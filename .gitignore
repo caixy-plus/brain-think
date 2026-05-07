@@ -1,0 +1,39 @@
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Server (Maven)
+server/target/
+server/.mvn/wrapper/maven-wrapper.jar
+server/HELP.md
+server/*.log
+
+# Client (Flutter)
+client/.dart_tool/
+client/.flutter-plugins
+client/.flutter-plugins-dependencies
+client/.packages
+client/.pub-cache/
+client/.pub/
+client/build/
+client/ios/Pods/
+client/ios/.symlinks/
+client/ios/Flutter/Flutter.framework
+client/ios/Flutter/Flutter.podspec
+client/macos/Pods/
+client/macos/Flutter/ephemeral/
+client/android/.gradle/
+client/android/local.properties
+client/windows/flutter/ephemeral/
+client/linux/flutter/ephemeral/
+
+# Secrets
+.env
+.env.local
+*.local.yml
+*.local.yaml

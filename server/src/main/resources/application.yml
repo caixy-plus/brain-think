@@ -1,0 +1,50 @@
+server:
+  port: 9080
+
+spring:
+  application:
+    name: brain-think-server
+  datasource:
+    # 注意：app_plat docker-compose 暴露的 PG 端口是 5433（非默认 5432）
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5433}/${DB_NAME:appmarket}?currentSchema=brainthink
+    username: ${DB_USER:postgres}
+    password: ${DB_PASSWORD:postgres}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        default_schema: brainthink
+        format_sql: true
+    open-in-view: false
+  flyway:
+    enabled: true
+    schemas: brainthink
+    default-schema: brainthink
+    create-schemas: true
+    locations: classpath:db/migration
+    # 开发期：放过 V1 的 checksum 漂移（早先在 V1 上做过手动微调）
+    validate-on-migrate: false
+  jackson:
+    default-property-inclusion: non_null
+
+platform:
+  base-url: ${PLATFORM_BASE_URL:https://api.local.caixy.xin/api}
+  client-id: ${PLATFORM_CLIENT_ID:}
+  client-secret: ${PLATFORM_CLIENT_SECRET:}
+  brain-api-key: ${PLATFORM_BRAIN_API_KEY:dev-key-2024}
+
+brainthink:
+  jwt:
+    secret: ${BT_JWT_SECRET:please-change-this-to-a-32-or-more-chars-secret}
+    expire-seconds: 86400
+  chat:
+    default-model: ${CHAT_DEFAULT_MODEL:mimo-v2-pro}
+    max-history: 20
+    system-prompt: "你是 brain-think（头脑风暴）的智能助手，回答简洁友好。"
+
+logging:
+  level:
+    com.brainthink: DEBUG
+    org.springframework.web.client: INFO
