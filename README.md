@@ -2,6 +2,9 @@
 
 `app_plat` OAuth + 脑池 AI API 的端到端验证应用。
 
+![brain-think 截图](screenshot.png)
+
+
 | 子项目 | 说明 |
 |---|---|
 | `server/` | Spring Boot 3.2 + Java 21 服务端（OAuth 回调编排、脑池转发、会话/对话存储） |
